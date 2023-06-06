@@ -1,9 +1,14 @@
+package com.professionalandroid.apps.foodrecommand2
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.content.Intent
 import com.professionalandroid.apps.foodrecommand2.R
 import com.professionalandroid.apps.foodrecommand2.databinding.ActivityQuestionsBinding
+
 
 class QuestionsActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityQuestionsBinding
@@ -16,14 +21,15 @@ class QuestionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        mBinding.layoutQuestion.visibility = View.VISIBLE
         foodDataToText()
 
         mBinding.tvQuestion.visibility = View.VISIBLE
 
-        mBinding.btnSubmit.setOnClickListener { v ->
+        mBinding.btnSubmit.setOnClickListener { _ ->
             when (curQuestion) {
                 0 -> {
-                    mBinding.tvQuestion.visibility = View.GONE
                     setQuestion(
                         "나는 ____ 종류의 음식을 먹고 싶다.",
                         "한식", "중식", "일식", "양식", "기타", null
@@ -50,11 +56,14 @@ class QuestionsActivity : AppCompatActivity() {
                     "매움", "안매움", null, null, null, null
                 ) //5번
                 else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
-                5 -> if (addCondition()) setQuestion(
-                    "나는 ____음식을 먹고 싶다.",
-                    "차가움", "뜨거움", null, null, null, null
-                ) //6번
-                else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
+                5 -> if (addCondition()) {
+                    filterFoodList()
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putStringArrayListExtra("foodList", resList)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

@@ -1,109 +1,133 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_question"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#363A53">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".QuestionsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_question"
+    <TextView
+        android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:textColor="#363A43"
+        android:textSize="35sp"
+        tools:text="질문" />
+
+    <LinearLayout
+        android:id="@+id/ll_progress_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:indeterminate="false"
+            android:max="10"
+            android:minHeight="50dp"
+            android:progress="0" />
 
         <TextView
-            android:id="@+id/tvQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="테스트 질문 입니다."
-            android:textColor="#FFFFFF"
-            android:textSize="26sp"
-            android:fontFamily="@font/nanumsquareneo_brg"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="300dp" />
-
-        <LinearLayout
-            android:id="@+id/layout_radio"
-            android:layout_width="337dp"
-            android:layout_height="287dp"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvQuestion">
-
-            <CheckBox
-                android:id="@+id/radioButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하나"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/nanumsquareneo_brg"
-                android:buttonTint="#FFFFFF" />
-
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSubmit"
+            android:id="@+id/tv_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다음"
-            android:textColor="#FF000000"
-            android:fontFamily="@font/nanumsquareneo_brg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_radio"
-            android:layout_marginEnd="16dp" />
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColorHint="#7A8089"
+            android:textSize="14sp"
+            tools:text="0/5" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="First" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="Second" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="Third" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="Fourth" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="Fifth" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:textAlignment="center"
+            android:padding="15dp"
+            android:text="Sixth" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="SUBMIT"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,24 +1,30 @@
 package com.professionalandroid.apps.foodrecommand2
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
-
+import androidx.appcompat.widget.AppCompatButton
+import com.professionalandroid.apps.foodrecommand2.QuestionsActivity
+import com.professionalandroid.apps.foodrecommand2.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val buttonStart:Button = findViewById(R.id.btn_start)
+        val buttonStart: AppCompatButton = findViewById(R.id.btn_start)
         buttonStart.setOnClickListener {
+            try {
                 val intent = Intent(this@MainActivity, QuestionsActivity::class.java)
-                // TODO Pass the name through intent using the constant variable which we have created.
                 startActivity(intent)
+                intent.putExtra("curQuestion", 0)
                 finish()
+            } catch (e: Exception) {
+                Toast.makeText(this@MainActivity, "액티비티 이동에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
             }
         }
     }
+}
