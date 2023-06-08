@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
 import android.content.Intent
+import android.widget.ProgressBar
 import com.professionalandroid.apps.foodrecommand2.R
 import com.professionalandroid.apps.foodrecommand2.databinding.ActivityQuestionsBinding
 
@@ -15,27 +16,29 @@ class QuestionsActivity : AppCompatActivity() {
     private var foodList: List<String> = ArrayList()
     private val pickFoodList = ArrayList<String>()
     private val resList = ArrayList<String>()
-    private var curQuestion = 0
+    private var curQuestion = 1
+    private var progressBar: ProgressBar?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mBinding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
         mBinding.layoutQuestion.visibility = View.VISIBLE
         foodDataToText()
-
         mBinding.tvQuestion.visibility = View.VISIBLE
+        progressBar=findViewById(R.id.progressBar)
+
+
+
+        setQuestion(
+            "나는 ____ 종류의 음식을 먹고 싶다.",
+            "한식", "중식", "일식", "양식", "기타", null
+        )
+
 
         mBinding.btnSubmit.setOnClickListener { _ ->
             when (curQuestion) {
-                0 -> {
-                    setQuestion(
-                        "나는 ____ 종류의 음식을 먹고 싶다.",
-                        "한식", "중식", "일식", "양식", "기타", null
-                    ) //1번
-                    curQuestion++
-                }
                 1 -> if (addCondition()) setQuestion(
                     "나는 지금 ____을 먹고 싶다.",
                     "아침", "브런치", "점심", "저녁", null, null
@@ -67,6 +70,8 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
     private fun filterFoodList() {
         for (i in foodList.indices) {

@@ -1,5 +1,6 @@
 package com.professionalandroid.apps.foodrecommand2
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,15 @@ class ResultActivity : AppCompatActivity() {
         mBinding.tvResult.text = randomFood
 
         mBinding.btnRestart.setOnClickListener {
+            val intent = Intent(this@ResultActivity, MainActivity::class.java)
+            startActivity(intent)
             finish()
+        }
+
+        mBinding.btnOther.setOnClickListener {
+            val randomIndex = Random.nextInt(foodList.size)
+            val randomFood = foodList[randomIndex]
+            mBinding.tvResult.text = randomFood
         }
     }
 

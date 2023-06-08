@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#363A53"
     android:padding="20dp"
+    android:fontFamily="@font/nanumsquareneo_brg"
     tools:context=".QuestionsActivity">
 
     <TextView
@@ -14,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:textColor="#363A43"
+        android:textColor="@color/black"
         android:textSize="35sp"
         tools:text="질문" />
 

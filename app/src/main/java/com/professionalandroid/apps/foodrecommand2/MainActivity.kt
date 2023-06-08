@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
             try {
                 val intent = Intent(this@MainActivity, QuestionsActivity::class.java)
                 startActivity(intent)
-                intent.putExtra("curQuestion", 0)
                 finish()
             } catch (e: Exception) {
                 Toast.makeText(this@MainActivity, "액티비티 이동에 실패했습니다.", Toast.LENGTH_SHORT).show()
