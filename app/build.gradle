@@ -21,6 +21,9 @@ android {
         viewBinding = true
     }
 
+    viewBinding {
+        enabled = true
+    }
 
     buildTypes {
         release {

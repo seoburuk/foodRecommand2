@@ -18,21 +18,29 @@ class ResultActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         foodDataToText()
 
+        // Choose a random food from the foodList
         val randomIndex = Random.nextInt(foodList.size)
-        val randomFood = foodList[randomIndex]
-        mBinding.tvResult.text = randomFood
+        val randomFoodItem = foodList[randomIndex]
+        val randomFood = randomFoodItem.split(":").firstOrNull() ?: ""
+        mBinding.tvResult.text = randomFood + "을 추천드려요"
+
+        mBinding.btnOther.setOnClickListener {
+            val randomIndex = Random.nextInt(foodList.size)
+            val randomFoodItem = foodList[randomIndex]
+            val randomFood = randomFoodItem.split(":").firstOrNull() ?: ""
+            mBinding.tvResult.text = randomFood + "을 추천드려요"
+        }
 
         mBinding.btnRestart.setOnClickListener {
+            // Restart the MainActivity
             val intent = Intent(this@ResultActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
+    }
 
-        mBinding.btnOther.setOnClickListener {
-            val randomIndex = Random.nextInt(foodList.size)
-            val randomFood = foodList[randomIndex]
-            mBinding.tvResult.text = randomFood
-        }
+    override fun onBackPressed() {
+        // Disable the back button press
     }
 
     private fun foodDataToText() {

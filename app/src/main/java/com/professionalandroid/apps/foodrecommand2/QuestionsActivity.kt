@@ -1,15 +1,12 @@
 package com.professionalandroid.apps.foodrecommand2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.app.Activity
-import android.content.Intent
-import android.widget.ProgressBar
-import com.professionalandroid.apps.foodrecommand2.R
+import androidx.core.view.isVisible
 import com.professionalandroid.apps.foodrecommand2.databinding.ActivityQuestionsBinding
-
 
 class QuestionsActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityQuestionsBinding
@@ -17,48 +14,41 @@ class QuestionsActivity : AppCompatActivity() {
     private val pickFoodList = ArrayList<String>()
     private val resList = ArrayList<String>()
     private var curQuestion = 1
-    private var progressBar: ProgressBar?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mBinding = ActivityQuestionsBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
         mBinding.layoutQuestion.visibility = View.VISIBLE
         foodDataToText()
         mBinding.tvQuestion.visibility = View.VISIBLE
-        progressBar=findViewById(R.id.progressBar)
 
-
-
+        // Set the first question and answer options
         setQuestion(
             "나는 ____ 종류의 음식을 먹고 싶다.",
             "한식", "중식", "일식", "양식", "기타", null
         )
 
-
-        mBinding.btnSubmit.setOnClickListener { _ ->
+        mBinding.btnSubmit.setOnClickListener {
             when (curQuestion) {
                 1 -> if (addCondition()) setQuestion(
                     "나는 지금 ____을 먹고 싶다.",
                     "아침", "브런치", "점심", "저녁", null, null
                 ) //2번
-                else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
                 2 -> if (addCondition()) setQuestion(
                     "나는 ____이(가) 들어 갔으면 좋겠다.",
                     "밥", "빵", "면", "고기", "채소", null
                 ) //3번
-                else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
                 3 -> if (addCondition()) setQuestion(
                     "나는 ____요리를 먹고 싶다.",
                     "볶음", "튀김", "구이", "찜(탕)", "날(것)", "기타"
                 ) //4번
-                else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
                 4 -> if (addCondition()) setQuestion(
                     "나는 ____좋아 한다.",
                     "매움", "안매움", null, null, null, null
                 ) //5번
-                else Toast.makeText(this, "답변을 선택해 주세요.", Toast.LENGTH_SHORT).show()
                 5 -> if (addCondition()) {
                     filterFoodList()
                     val intent = Intent(this, ResultActivity::class.java)
@@ -71,7 +61,9 @@ class QuestionsActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onBackPressed() {
+        // Disable the back button press
+    }
 
     private fun filterFoodList() {
         for (i in foodList.indices) {
@@ -92,26 +84,26 @@ class QuestionsActivity : AppCompatActivity() {
     }
 
     private fun addCondition(): Boolean {
-        if (!(mBinding.radioButton1.isChecked || mBinding.radioButton2.isChecked || mBinding.radioButton3.isChecked || mBinding.radioButton4.isChecked || mBinding.radioButton5.isChecked || mBinding.radioButton6.isChecked)) {
+        if (!(mBinding.checkbox1.isChecked || mBinding.checkbox2.isChecked || mBinding.checkbox3.isChecked || mBinding.checkbox4.isChecked || mBinding.checkbox5.isChecked || mBinding.checkbox6.isChecked)) {
             return false
         }
-        if (mBinding.radioButton1.isChecked) {
-            pickFoodList.add(mBinding.radioButton1.text.toString())
+        if (mBinding.checkbox1.isChecked) {
+            pickFoodList.add(mBinding.checkbox1.text.toString())
         }
-        if (mBinding.radioButton2.isChecked) {
-            pickFoodList.add(mBinding.radioButton2.text.toString())
+        if (mBinding.checkbox2.isChecked) {
+            pickFoodList.add(mBinding.checkbox2.text.toString())
         }
-        if (mBinding.radioButton3.isChecked) {
-            pickFoodList.add(mBinding.radioButton3.text.toString())
+        if (mBinding.checkbox3.isChecked) {
+            pickFoodList.add(mBinding.checkbox3.text.toString())
         }
-        if (mBinding.radioButton4.isChecked) {
-            pickFoodList.add(mBinding.radioButton4.text.toString())
+        if (mBinding.checkbox4.isChecked) {
+            pickFoodList.add(mBinding.checkbox4.text.toString())
         }
-        if (mBinding.radioButton5.isChecked) {
-            pickFoodList.add(mBinding.radioButton5.text.toString())
+        if (mBinding.checkbox5.isChecked) {
+            pickFoodList.add(mBinding.checkbox5.text.toString())
         }
-        if (mBinding.radioButton6.isChecked) {
-            pickFoodList.add(mBinding.radioButton6.text.toString())
+        if (mBinding.checkbox6.isChecked) {
+            pickFoodList.add(mBinding.checkbox6.text.toString())
         }
         curQuestion++
         return true
@@ -140,43 +132,31 @@ class QuestionsActivity : AppCompatActivity() {
         answer5: String?,
         answer6: String?
     ) {
-        mBinding.radioButton1.isChecked = false
-        mBinding.radioButton2.isChecked = false
-        mBinding.radioButton3.isChecked = false
-        mBinding.radioButton4.isChecked = false
-        mBinding.radioButton5.isChecked = false
-        mBinding.radioButton6.isChecked = false
+        // Reset the checkboxes
+        mBinding.checkbox1.isChecked = false
+        mBinding.checkbox2.isChecked = false
+        mBinding.checkbox3.isChecked = false
+        mBinding.checkbox4.isChecked = false
+        mBinding.checkbox5.isChecked = false
+        mBinding.checkbox6.isChecked = false
 
+        // Set the question text
         mBinding.tvQuestion.text = question
-        mBinding.radioButton1.text = answer1
-        mBinding.radioButton2.text = answer2
 
-        if (answer3 != null) {
-            mBinding.radioButton3.visibility = View.VISIBLE
-            mBinding.radioButton3.text = answer3
-        } else {
-            mBinding.radioButton3.visibility = View.GONE
-        }
+        // Set the answer options
+        mBinding.checkbox1.text = answer1
+        mBinding.checkbox2.text = answer2
 
-        if (answer4 != null) {
-            mBinding.radioButton4.visibility = View.VISIBLE
-            mBinding.radioButton4.text = answer4
-        } else {
-            mBinding.radioButton4.visibility = View.GONE
-        }
+        mBinding.checkbox3.isVisible = answer3 != null
+        mBinding.checkbox3.text = answer3
 
-        if (answer5 != null) {
-            mBinding.radioButton5.visibility = View.VISIBLE
-            mBinding.radioButton5.text = answer5
-        } else {
-            mBinding.radioButton5.visibility = View.GONE
-        }
+        mBinding.checkbox4.isVisible = answer4 != null
+        mBinding.checkbox4.text = answer4
 
-        if (answer6 != null) {
-            mBinding.radioButton6.visibility = View.VISIBLE
-            mBinding.radioButton6.text = answer6
-        } else {
-            mBinding.radioButton6.visibility = View.GONE
-        }
+        mBinding.checkbox5.isVisible = answer5 != null
+        mBinding.checkbox5.text = answer5
+
+        mBinding.checkbox6.isVisible = answer6 != null
+        mBinding.checkbox6.text = answer6
     }
 }
