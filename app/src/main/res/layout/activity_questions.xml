@@ -1,98 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_question"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#363A53"
-    android:padding="20dp"
+    android:background="#212547"
     android:fontFamily="@font/nanumsquareneo_brg"
+    android:padding="20dp"
     tools:context=".QuestionsActivity">
 
     <TextView
         android:id="@+id/tvQuestion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkboxGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
         tools:text="질문" />
-
 
     <LinearLayout
         android:id="@+id/checkboxGroup"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:padding="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuestion">
 
         <CheckBox
             android:id="@+id/checkbox1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textAlignment="center"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="First" />
+            android:text="First"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkbox2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="Second" />
+            android:text="Second"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkbox3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="Third" />
+            android:text="Third"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkbox4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="Fourth" />
+            android:text="Fourth"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkbox5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="Fifth" />
+            android:text="Fifth"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkbox6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@color/pale_blue"
             android:padding="15dp"
-            android:text="Sixth" />
+            android:text="Sixth"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -100,11 +102,12 @@
         android:id="@+id/btn_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="right"
+        android:layout_marginEnd="16dp"
         android:text="SUBMIT"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxGroup" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
