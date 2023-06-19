@@ -55,8 +55,11 @@ class QuestionsActivity : AppCompatActivity() {
                 ) // 5번 질문
                 5 -> if (addCondition()) {
                     // 음식 리스트를 필터링하여 결과 화면으로 이동합니다.
+                    // filterFoodList() 함수를 호출하여 음식 데이터를 조건에 따라 필터링하여 resList에 결과를 저장합니다.
                     filterFoodList()
+                    // ResultActivity로 전환하기 위한 Intent 객체를 생성합니다.
                     val intent = Intent(this, ResultActivity::class.java)
+                    // "foodList"라는 키로 resList를 문자열 배열 리스트 형태로 추가합니다. 이를 통해 ResultActivity로 데이터를 전달합니다.
                     intent.putStringArrayListExtra("foodList", resList)
                     startActivity(intent)
                 } else {
